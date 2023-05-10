@@ -9,20 +9,20 @@ using namespace std;
 
 void get_URL( const string& host, const string& path )
 {
-  Address address(host, "http");
+  Address address( host, "http" );
   TCPSocket tcpSocket;
-  tcpSocket.connect(address);
+  tcpSocket.connect( address );
 
-  tcpSocket.write("GET " + path + " HTTP/1.1\r\n");
-  tcpSocket.write("Host: " + host + "\r\n");
-  tcpSocket.write("Connection: close\r\n");
-  tcpSocket.write("\r\n");
+  tcpSocket.write( "GET " + path + " HTTP/1.1\r\n" );
+  tcpSocket.write( "Host: " + host + "\r\n" );
+  tcpSocket.write( "Connection: close\r\n" );
+  tcpSocket.write( "\r\n" );
 
-  tcpSocket.shutdown(SHUT_WR);
+  tcpSocket.shutdown( SHUT_WR );
 
   string buffer;
-  while (!tcpSocket.eof()) {
-    tcpSocket.read(buffer);
+  while ( !tcpSocket.eof() ) {
+    tcpSocket.read( buffer );
     cout << buffer;
   }
 
